@@ -143,12 +143,12 @@ body {
     width: 100%;
     max-width: 600px;
     display: flex;
-    gap: 10px;
+    gap: 0;
 }
 
 .search-input {
     flex: 1;
-    padding: 18px 25px;
+    padding: 18px 40px 18px 25px;
     font-size: 18px;
     background: var(--search-bg);
     border: 2px solid var(--search-border);
@@ -180,6 +180,7 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px var(--shadow-color);
     min-width: 60px;
+    margin-left: 20px;
 }
 
 .search-button:hover {
@@ -194,21 +195,24 @@ body {
 
 /* Clear Search Button Styles */
 .clear-search-btn {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    right: unset;
+    top: unset;
+    transform: none;
     background: transparent;
     border: none;
     color: var(--text-secondary);
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0 8px;
+    padding: 0 4px;
+    margin-left: -36px;
     z-index: 2;
     border-radius: 50%;
     transition: background 0.2s, color 0.2s;
     outline: none;
     display: none;
+    height: 100%;
+    align-self: center;
 }
 .clear-search-btn:focus, .clear-search-btn:hover {
     background: var(--bg-card);
@@ -216,7 +220,7 @@ body {
 }
 @media (max-width: 600px) {
     .clear-search-btn {
-        right: 60px;
+        right: 8px;
     }
 }
 
@@ -256,8 +260,8 @@ body {
 
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 22px;
     padding: 20px 0;
 }
 
@@ -267,7 +271,10 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    min-height: 420px;
+    min-height: 260px;
+    max-width: 300px;
+    min-width: 240px;
+    margin: 0 auto;
     background: var(--bg-card);
     border-radius: 20px;
     overflow: hidden;
@@ -275,6 +282,13 @@ body {
     box-shadow: 0 4px 16px var(--shadow-color);
     border: 1px solid var(--border-color);
     position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s, transform 0.4s;
+}
+
+.movie-card.fade-in {
+    animation: fadeInUp 0.5s forwards;
 }
 
 .movie-card:hover {
@@ -287,7 +301,6 @@ body {
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    aspect-ratio: 2/3;
 }
 
 .poster-image {
@@ -344,7 +357,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 20px;
+    padding: 14px;
+    min-height: 70px;
+    overflow: visible;
 }
 
 .movie-title {
@@ -466,7 +481,8 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .movies-grid {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
     }
     
     .search-input {
@@ -515,6 +531,17 @@ body {
     .light-theme {
         --border-color: #000000;
         --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

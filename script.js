@@ -1,5 +1,5 @@
 // TMDb API config
-const API_KEY = 'YOUR_TMDB_API_KEY'; // <-- Replace with your TMDb API key
+const API_KEY = 'e35d5ee09e0335bc5dcc28e11151dc33'; // <-- Replace with your TMDb API key
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -59,7 +59,8 @@ if (!clearBtn) {
     clearBtn.setAttribute('aria-label', 'Clear search');
     clearBtn.innerHTML = '&times;';
     clearBtn.style.display = 'none';
-    searchContainer.appendChild(clearBtn);
+    // Insert clearBtn after the input and before the search button
+    searchContainer.insertBefore(clearBtn, searchBtn);
 }
 
 searchInput.addEventListener('input', () => {
@@ -124,13 +125,19 @@ async function fetchMovies(query = '', sort = 'popularity.desc', genreId = null)
 // Render movie cards
 function renderMovies(movies) {
     moviesGrid.innerHTML = '';
-    if (!movies.length) {
+    // Filter out NSFW/adult movies
+    const safeMovies = movies.filter(movie => !movie.adult);
+    if (!safeMovies.length) {
         noResults.classList.remove('hidden');
         return;
     }
     noResults.classList.add('hidden');
-    movies.forEach(movie => {
-        moviesGrid.appendChild(createMovieCard(movie));
+    safeMovies.forEach((movie, i) => {
+        const card = createMovieCard(movie);
+        moviesGrid.appendChild(card);
+        setTimeout(() => {
+            card.classList.add('fade-in');
+        }, i * 100); // Staggered fade-in
     });
 }
 
