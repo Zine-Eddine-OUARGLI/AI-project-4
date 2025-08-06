@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieSearchEngine.EXE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle theme">
+        <span id="theme-icon-light" class="theme-icon light-icon">☀️</span>
+        <span id="theme-icon-dark" class="theme-icon dark-icon">🌙</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 id="main-title" class="title">MovieSearchEngine.EXE</h1>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="movie-search-input" 
+                    class="search-input" 
+                    placeholder="What do you want to watch?"
+                    autocomplete="off"
+                >
+                <button id="search-btn" class="search-button" aria-label="Search movies">
+                    <span class="search-icon">🔍</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Movies Grid -->
+        <section class="movies-section">
+            <div class="sort-bar">
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select" class="sort-select">
+                    <option value="popularity.desc">Most Popular</option>
+                    <option value="vote_average.desc">Rating (High to Low)</option>
+                    <option value="vote_average.asc">Rating (Low to High)</option>
+                    <option value="title.asc">Title (A-Z)</option>
+                    <option value="title.desc">Title (Z-A)</option>
+                    <option value="genre">Genre</option>
+                </select>
+            </div>
+            <div id="movies-grid" class="movies-grid">
+                <!-- Movie cards will be rendered here by JS -->
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" class="loading-indicator hidden">
+            <div class="spinner"></div>
+            <p>Loading movies...</p>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="no-results hidden">
+            <p>No movies found. Try a different search term.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 MovieSearchEngine.EXE - Your Ultimate Movie Discovery Platform</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
